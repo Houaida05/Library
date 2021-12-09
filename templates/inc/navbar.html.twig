@@ -1,0 +1,101 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light  fixed-top" style="background-color:#6caba5;"  id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('accueil') }}#page-top">Biblio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("accueil")}}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ path("livre_index") }}#portfolio">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("search")}}">Search</a>
+                </li>
+
+
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <li class="nav-item">
+            <a class ="nav-link"  onmouseover="this.style.color='white';"> Logged as {{ app.user.username }}  </a>
+            </li>
+                {% endif %}
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('profile') }}">Your Profile </a>
+                    </li>
+                {% endif %}
+
+        <li class="nav-item">
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href="{{ path('app_logout') }}" class ="nav-link"  onmouseover="this.style.color='white';"> logout</a>
+            {% endif %}
+        </li>
+                <li class="nav-item">
+            {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href="{{ path('app_login') }}" class ="nav-link"  onmouseover="this.style.color='white';"> login</a>
+            {% endif %}
+                </li>
+                    </ul>
+        </div>
+    </div>
+
+
+
+</nav>
+
+
+
+{#
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path("accueil")}}">Biblio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path("accueil")}}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("livre_index")}}">Livres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("categorie_index")}}">Categories</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("auteur_index")}}">Auteurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("editeur_index")}}">Editeurs</a>
+                </li>
+                <!--  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                  </li>-->
+                <li class="nav-item">
+                    <a class="nav-link disabled"></a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+    #}
