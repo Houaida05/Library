@@ -1,0 +1,14 @@
+
+
+{% block body %}
+   <div class="container" style="margin-top: 4rem">
+ <h1> Page not found </h1>
+   <h5> The page your are reaching is not available </h5>
+   <p> Error code : {{ status_code }}</p>
+   <p> Error message : {{ status_text }}</p>
+
+   <a href="{{ path('accueil') }}"> Go back to home page </a>
+   </div>
+
+  {% endblock %}
+

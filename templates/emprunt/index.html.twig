@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" href=" {{ asset('logo.png') }}"  type='image/png' />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Borrow</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
+
+    {{ include('inc/navbar.html.twig')}}
+
+{% block body %}
+
+
+
+
+    <div class="container" style="margin-top: 100px ; max-width: 50rem;" >
+        <h3 class="text-center text-white pt-5"></h3>
+        <div class="card border-primary mb-3" >
+            <div class="card-header">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Borrow Date </th>
+                <th>Return Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt in emprunts %}
+            <tr>
+                <td>{{ emprunt.livres }}</td>
+                <td>{{ emprunt.dateEmp ? emprunt.dateEmp|date('Y-m-d') : '' }}</td>
+
+                <td>{{ emprunt.dateRet ? emprunt.dateRet|date('Y-m-d') : '' }}</td>
+
+                <td>
+
+                    <a href="{{ path('emprunt_show', {'id': emprunt.id}) }}" >
+                        <button class="btn btn-primary btn-xs " type="button" > Show </button>
+
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+                {% for msg in app.flashes('Success') %}
+                    <div class="alert alert-success"> {{ msg }} </div>
+                {% endfor %}
+</div>
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block footer %}
+
+        {{ include('inc/footer.html.twig')}}
+    {% endblock %}

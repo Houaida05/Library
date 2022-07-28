@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    {%  include 'inc/navbar.html.twig' %}
+<div style="margin-top: 10rem">
+    <div class="container rounded bg-light mt-5">
+        {% for message in app.flashes('message') %}
+            <div class="col-xs4">
+            <div class="alert alert-success">    {{ message }}</div>
+            </div>
+        {% endfor %}
+        <div class="row">
+
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" src="{{ asset('avatar.jpg') }}" width="90">
+
+                    <span class="font-weight-bold">{{ app.user.name }} {{ app.user.firstname }}</span>
+                    <span class="text-black-50"> {{ app.user.email }}</span>
+                    <div class="mt-4 text-center"> <a  class="btn btn btn-primary"  href="{{ path('emprunt_index') }}"> My books  </a></div>
+
+                   </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-row align-items-center back">
+                            <h6 style="margin-bottom: 2rem">Edit Profile</h6>
+                        </div>
+                    </div>
+                        {{ form_start(prof_form) }}
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Name') }}</div>
+                            {{ form_widget(prof_form.name) }}
+                        </div>
+
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Lastname') }}</div>
+                            {{ form_widget(prof_form.firstname) }}
+
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Email ') }}</div>
+                            {{ form_widget(prof_form.email) }}</div>
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Phone number') }}</div>
+                            {{ form_widget(prof_form.tel) }}</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Address ') }}</div>
+                            {{ form_widget(prof_form.adresse) }}</div>
+                        <div class="col-md-6">
+                            <div style="margin-bottom: 0.5rem" class="text-success"> {{ form_label(prof_form, ' Country') }}</div>
+                            {{ form_widget(prof_form.country) }}</div>
+                    </div>
+
+                    <div class="mt-5 text-center">{{ form_widget(prof_form.Update) }}
+                    <a  class="btn btn btn-primary"  href="{{ path('password') }}"> Change Password  </a>
+
+                    </div>
+                    {{ form_end(prof_form) }}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{ include('inc/footer.html.twig')}}
+
+{% endblock %}

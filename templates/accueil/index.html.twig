@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title ' Index | ' ~ parent() %}
+
+{% block x %}<div id="bannerimage"></div> {% endblock %}
+
+
+{% block body %}
+    {{ include('inc/navbar.html.twig')}}
+    <header class="masthead ">
+        <div class="container">
+            <div class="masthead-subheading  "> Open your mind to endless possibilities</div>
+            <div class="masthead-heading text-uppercase ">Welcome to Biblio!</div>
+            <a class="btn btn-primary btn-xl text-uppercase " href="{{ path('search')}}#search"> Search a book </a>
+        </div>
+    </header>
+
+
+    {{ include('livre/index.html.twig') }}
+
+
+    {#
+    <style>
+          .main {
+            text-align: center;
+        }
+
+        #bannerimage {
+            width: 100%;
+            background-image: url(books.jpeg);
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+    </style>  #}
+    <div class="main">
+    </div>
+{#  <ul>
+            <li><a href="{{ path('livre_index') }}" > Livres </a></li>
+            <li><a href="{{ path('auteur_index') }}" > Auteurs </a></li>
+            <li><a href="{{ path('categorie_index') }}"> Categories </a></li>
+            <li><a href="{{ path('editeur_index') }}"> Editeurs </a></li>
+        </ul>-->#}
+    {{ include('inc/footer.html.twig')}}
+
+{% endblock %}
+

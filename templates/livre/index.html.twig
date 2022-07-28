@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+
+          <!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Most read books</h2>
+            <h3 class="section-subheading text-muted">Check out our most read books </h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                {% for l in livres %}
+
+                  <div class="portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="{{ path('livre_show', {'id':l.id } )}}">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="{{ asset('/uploads/images/books/' ~ l.image) }}"  alt="..." />
+                        </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">{{ l.titre}}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ l.categorie }}</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                {% endfor %}
+            </div>
+            <!-- Portfolio Modals-->
+            <!-- Portfolio item 1 modal popup-->
+
+
+
+
+
+                {#
+                <h1>Livre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>ISBN</th>
+                <th>Prix</th>
+                <th>QteStock</th>
+                <th>DateEdition</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.ISBN }}</td>
+                <td>{{ livre.prix }}</td>
+                <td>{{ livre.qteStock }}</td>
+                <td>{{ livre.dateEdition ? livre.dateEdition|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('livre_new') }}">Create new</a> #}
+{% if footer== false %}
+            {{ include('inc/footer.html.twig')}}
+{% endif %}
+
+            {% endblock %}

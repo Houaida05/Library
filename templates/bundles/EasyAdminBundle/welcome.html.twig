@@ -1,0 +1,73 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_content %}
+<div class="container">
+    <div class="row mt-3">
+    <div class="col-4 alert-info">
+        {% set usr=ea_url().setController('App\\Controller\\Admin\\UserCrudController') %}
+        {% set lvr=ea_url().setController('App\\Controller\\Admin\\LivreCrudController') %}
+        {% set url=ea_url().setController('App\\Controller\\Admin\\EmpruntCrudController') %}
+
+
+        <span class="display-3"> {{ countUser['value'] }} </span>  <a href="{{ usr }}"> Utilisateurs </a>
+    </div>
+    <div class="col-4 alert-danger">
+        <span class="display-3"> {{ countLivre['value'] }} </span> <a href="{{ lvr }}"> Livres </a>
+    </div>
+    <div class="col-4 alert-success">
+        <span class="display-3"> {{ countBorrow['value'] }} </span>  <a href="{{ url }}"> Emprunts </a>
+    </div>
+ </div>
+
+    <div class="row mt-5">
+        <div class="col-4">
+            <h3> Liste des categories </h3>
+
+            <ul class="list-group">
+
+
+
+                {% for cat in categories %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="display-7">
+                                <i class="fa fa-icons"></i>
+                                {{ cat.designation }}
+                            </span>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+            <div class="col-4">
+                <h3> Les livres en rupture de stock </h3>
+
+                <ul class="list-group">
+
+                    {% for b in books %}
+
+                        {% if b.qteStock == 0 %}
+                                   <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="display-8">
+                                <h5 class="fa fa-book">   {{ b.titre }}  </h5>                                                             </span>
+                                  </li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+</div>
+        <div class="col-4">
+            <h3> Les Emprunts expirés </h3>
+            <ul class="list-group">
+                {% for emp in borrows %}
+                {% if date(emp.dateRet ) < date('now') %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="display-7">
+        <h5 class="fa fa-handshake">  {{ emp.livres}}  | <a href="{{ url }}"> {{ emp.users.name}} </h5>   </a>                                                          </span>
+            </li>
+            {% endif %}
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div> </div>
+{% endblock %}
